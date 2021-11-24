@@ -22,7 +22,7 @@ const Books = (props) => {
                     <div className="book-container">
                         <h1>{book.title}</h1>
                         <h2>By {book.author}</h2>
-                        <img src={book.image} />
+                        <img src={book.image} width="25%" height="25%" />
                         <p>{book.description}</p>
                     </div>
                 );
