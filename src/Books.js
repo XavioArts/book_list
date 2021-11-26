@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import NewBook from "./NewBook";
 
 const Books = (props) => {
     const [books, setBooks] = useState([]);
+
+    const [visibility, setVisibility] = useState(false);
 
     useEffect(() => {
         getBooks();
@@ -29,8 +32,17 @@ const Books = (props) => {
             });
     };
 
+    const addBook = (book) => {
+        let image = "http:\/\/placeimg.com\/480\/640\/any";
+        let description = "Chuck Norris can solve the Towers of Hanoi in one move.";
+        let newBook = { ...book, image, description };
+        setBooks([...books, newBook]);
+    }
+
     return (
         <div className="books-container">
+            { visibility && <NewBook addBook={addBook} setVisibility={setVisibility}/>}
+            <button onClick={()=>setVisibility(!visibility)}>Add a new book form</button>
             {renderBooks()}
         </div>
     );
